@@ -1,11 +1,318 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Teste HTTPS Render</title>
+  <meta charset="UTF-8" />
+  <title>Restaurante Exemplo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #111;
+      color: #f5f5f5;
+    }
+
+    header {
+      background: url("https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200") center/cover no-repeat;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.7), rgba(0,0,0,.9));
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 700px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      opacity: .9;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: .9rem 1.6rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: .95rem;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+
+    .btn-primary {
+      background: #f5b942;
+      color: #111;
+      box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 35px rgba(0,0,0,.6);
+      background: #ffd46e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #f5f5f5;
+      border: 1px solid rgba(245,245,245,.4);
+    }
+
+    .btn-outline:hover {
+      background: rgba(245,245,245,.1);
+      transform: translateY(-2px);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3.5rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2.section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #f5b942;
+      padding-left: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: #181818;
+      border-radius: 1rem;
+      padding: 1.3rem 1.4rem;
+      border: 1px solid rgba(255,255,255,.04);
+      box-shadow: 0 12px 30px rgba(0,0,0,.5);
+    }
+
+    .card h3 {
+      margin-bottom: .5rem;
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      font-size: .92rem;
+      opacity: .9;
+      line-height: 1.5;
+    }
+
+    .hours-list {
+      list-style: none;
+      font-size: .93rem;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: .4rem 0;
+      border-bottom: 1px dashed rgba(255,255,255,.08);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: .15rem .5rem;
+      border-radius: 999px;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      background: rgba(245,185,66,.15);
+      color: #f5b942;
+      margin-bottom: .4rem;
+    }
+
+    .gallery {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: .9rem;
+      height: 180px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 10px 25px rgba(0,0,0,.6);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding: 1.8rem 1.5rem 2rem;
+      text-align: center;
+      font-size: .85rem;
+      color: #aaa;
+      background: #090909;
+    }
+
+    .contact-links a {
+      color: #f5b942;
+      text-decoration: none;
+      font-size: .9rem;
+      margin: 0 .4rem;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+
+    .map-frame {
+      width: 100%;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,.06);
+      overflow: hidden;
+      box-shadow: 0 12px 35px rgba(0,0,0,.7);
+      min-height: 250px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Deu certo! 🟢</h1>
-  <p>Se você está vendo isto, o site abriu via Render com HTTPS!</p>
+  <header>
+    <div class="hero-content">
+      <p class="tag">Restaurante Exemplo</p>
+      <h1 class="hero-title">A melhor experiência gastronômica da região</h1>
+      <p class="hero-subtitle">
+        Carnes, massas e risotos preparados com ingredientes selecionados,
+        em um ambiente aconchegante e exclusivo para sua família.
+      </p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/5500000000000" target="_blank" class="btn btn-primary">
+          Reservar mesa pelo WhatsApp
+        </a>
+        <a href="#" class="btn btn-outline">
+          Ver cardápio em PDF
+        </a>
+      </div>
+    </div>
+  </header>
+
+    <main>
+      <section>
+        <h2 class="section-title">Sobre o restaurante</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Tradição e sabor em cada prato</h3>
+            <p>
+              Este é um texto de exemplo. Aqui você pode contar a história do restaurante,
+              falar sobre a especialidade da casa, o tipo de culinária e o diferencial
+              que faz o cliente escolher este lugar ao invés de qualquer outro.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Ambiente para momentos especiais</h3>
+            <p>
+              Fale sobre o ambiente: clima familiar, luz baixa, música ao vivo em certos dias,
+              espaço kids, área externa, estacionamento, etc. Tudo que ajude o cliente a se imaginar aqui.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Horário de funcionamento</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <ul class="hours-list">
+              <li><span>Segunda</span> <span>Fechado</span></li>
+              <li><span>Terça a Quinta</span> <span>18h às 23h</span></li>
+              <li><span>Sexta</span> <span>18h às 00h</span></li>
+              <li><span>Sábado</span> <span>12h às 00h</span></li>
+              <li><span>Domingo</span> <span>12h às 22h</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Endereço</h3>
+            <p>Rua Exemplo, 123 - Centro<br>Sua Cidade - UF</p>
+            <p style="margin-top:.5rem;font-size:.88rem;opacity:.8;">
+              Estacionamento próprio | Fácil acesso | Próximo ao ponto turístico X.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Galeria</h2>
+        <div class="gallery">
+          <img src="https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Foto do prato 1" />
+          <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Foto do prato 2" />
+          <img src="https://images.pexels.com/photos/3217151/pexels-photo-3217151.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ambiente do restaurante" />
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Localização</h2>
+        <div class="map-frame">
+          <!-- Troque o src abaixo por um mapa incorporado do Google Maps da empresa real -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.9739207022815!2d-46.65657168502236!3d-23.570144884678582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8f4d9c0f5%3A0x9adb3f4b07d7dd63!2sRestaurante%20Exemplo!5e0!3m2!1spt-BR!2sBR!4v1700000000000"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Restaurante Exemplo • CNPJ 00.000.000/0001-00</p>
+      <p class="contact-links">
+        <a href="https://wa.me/5500000000000" target="_blank">WhatsApp</a> |
+        <a href="#" target="_blank">Instagram</a> |
+        <a href="#" target="_blank">Avaliar no Google</a>
+      </p>
+    </footer>
 </body>
 </html>
